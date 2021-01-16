@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "module.core-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "salihbaki",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
