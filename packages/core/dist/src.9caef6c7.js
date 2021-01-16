@@ -5166,7 +5166,6 @@ class ResolveDecorators {
     return (target, key) => {
       var _a;
 
-      console.log('this.module', this.module);
       const cacheObj = (_a = this.module) === null || _a === void 0 ? void 0 : _a.resolveCache(cache);
       if (!cacheObj) return;
       this.defineProperty(target, key, cacheObj);
@@ -5733,7 +5732,7 @@ Object.keys(_index8).forEach(function (key) {
     }
   });
 });
-},{"./http-client/index":"../../../node_modules/@sabasayer/module.core/dist/http-client/index.js","./controller/index":"../../../node_modules/@sabasayer/module.core/dist/controller/index.js","./module/index":"../../../node_modules/@sabasayer/module.core/dist/module/index.js","./provider/index":"../../../node_modules/@sabasayer/module.core/dist/provider/index.js","./cache/index":"../../../node_modules/@sabasayer/module.core/dist/cache/index.js","./mapper/index":"../../../node_modules/@sabasayer/module.core/dist/mapper/index.js","./utils/index":"../../../node_modules/@sabasayer/module.core/dist/utils/index.js","./logger/index":"../../../node_modules/@sabasayer/module.core/dist/logger/index.js"}],"../../auth/src/configurations/decorators.ts":[function(require,module,exports) {
+},{"./http-client/index":"../../../node_modules/@sabasayer/module.core/dist/http-client/index.js","./controller/index":"../../../node_modules/@sabasayer/module.core/dist/controller/index.js","./module/index":"../../../node_modules/@sabasayer/module.core/dist/module/index.js","./provider/index":"../../../node_modules/@sabasayer/module.core/dist/provider/index.js","./cache/index":"../../../node_modules/@sabasayer/module.core/dist/cache/index.js","./mapper/index":"../../../node_modules/@sabasayer/module.core/dist/mapper/index.js","./utils/index":"../../../node_modules/@sabasayer/module.core/dist/utils/index.js","./logger/index":"../../../node_modules/@sabasayer/module.core/dist/logger/index.js"}],"../../../node_modules/auth/src/configurations/decorators.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5747,7 +5746,7 @@ const resolve = new _module.ResolveDecorators();
 exports.resolve = resolve;
 const injectable = new _module.InjectableDecorators();
 exports.injectable = injectable;
-},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js"}],"../../auth/src/configurations/module.ts":[function(require,module,exports) {
+},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js"}],"../../../node_modules/auth/src/configurations/module.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5759,27 +5758,19 @@ var _module = require("@sabasayer/module.core");
 
 var _decorators = require("./decorators");
 
-class AuthModule extends _module.ModuleCore {}
+class AuthModule extends _module.ModuleCore {
+  constructor() {
+    super(...arguments);
+    this.id = Math.random();
+  }
+
+}
 
 const authModule = new AuthModule();
 exports.authModule = authModule;
 authModule.registerCache(_module.SessionStorageCache);
 authModule.useDecorators(_decorators.injectable, _decorators.resolve);
-},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js","./decorators":"../../auth/src/configurations/decorators.ts"}],"../src/configurations/logger.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.coreLogger = void 0;
-
-var _module = require("@sabasayer/module.core");
-
-const coreLogger = new _module.Logger({
-  logStyle: "font-weight:500;color:white; padding-left:3px;background-color: #537895; background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);"
-});
-exports.coreLogger = coreLogger;
-},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js"}],"../src/configurations/http-client.boot.ts":[function(require,module,exports) {
+},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js","./decorators":"../../../node_modules/auth/src/configurations/decorators.ts"}],"../src/configurations/http-client.boot.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5807,7 +5798,7 @@ const fetchClient = new _module.FetchHTTPClient({
   createErrorFn
 });
 exports.fetchClient = fetchClient;
-},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js"}],"../../../node_modules/auth/src/configurations/decorators.ts":[function(require,module,exports) {
+},{"@sabasayer/module.core":"../node_modules/@sabasayer/module.core/dist/index.js"}],"../src/configurations/decorators.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5821,7 +5812,21 @@ const resolve = new _module.ResolveDecorators();
 exports.resolve = resolve;
 const injectable = new _module.InjectableDecorators();
 exports.injectable = injectable;
-},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js"}],"../src/configurations/module.ts":[function(require,module,exports) {
+},{"@sabasayer/module.core":"../node_modules/@sabasayer/module.core/dist/index.js"}],"../src/configurations/logger.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.coreLogger = void 0;
+
+var _module = require("@sabasayer/module.core");
+
+const coreLogger = new _module.Logger({
+  logStyle: "font-weight:500;color:white; padding-left:3px;background-color: #537895; background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);"
+});
+exports.coreLogger = coreLogger;
+},{"@sabasayer/module.core":"../node_modules/@sabasayer/module.core/dist/index.js"}],"../src/configurations/module.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5831,30 +5836,1197 @@ exports.coreModule = void 0;
 
 var _module = require("@sabasayer/module.core");
 
-var _module2 = require("../../../auth/src/configurations/module");
-
-var _logger = require("./logger");
+var _module2 = require("auth/src/configurations/module");
 
 var _httpClient = require("./http-client.boot");
 
-var _decorators = require("auth/src/configurations/decorators");
+var _decorators = require("./decorators");
 
-class CoreModule extends _module.ModuleCore {}
+var _logger = require("./logger");
+
+class CoreModule extends _module.ModuleCore {
+  constructor() {
+    super(...arguments);
+    this.id = Math.random();
+  }
+
+}
 
 const coreModule = new CoreModule();
 exports.coreModule = coreModule;
+coreModule.useDecorators(_decorators.resolve, _decorators.injectable);
 coreModule.registerHttpClientImplementation(_httpClient.fetchClient, _module.FetchHTTPClient);
 
 _module2.authModule.registerHttpClientImplementation(_httpClient.fetchClient, _module.FetchHTTPClient);
 
-coreModule.useDecorators(_decorators.resolve, _decorators.injectable);
-
-_logger.coreLogger.log("auth module", _module2.authModule);
-},{"@sabasayer/module.core":"../node_modules/@sabasayer/module.core/dist/index.js","../../../auth/src/configurations/module":"../../auth/src/configurations/module.ts","./logger":"../src/configurations/logger.ts","./http-client.boot":"../src/configurations/http-client.boot.ts","auth/src/configurations/decorators":"../../../node_modules/auth/src/configurations/decorators.ts"}],"../src/configurations/index.ts":[function(require,module,exports) {
+_logger.coreLogger.log("Modules registered", coreModule, _module2.authModule);
+},{"@sabasayer/module.core":"../node_modules/@sabasayer/module.core/dist/index.js","auth/src/configurations/module":"../../../node_modules/auth/src/configurations/module.ts","./http-client.boot":"../src/configurations/http-client.boot.ts","./decorators":"../src/configurations/decorators.ts","./logger":"../src/configurations/logger.ts"}],"../src/configurations/index.ts":[function(require,module,exports) {
 "use strict";
 
 require("./module");
-},{"./module":"../src/configurations/module.ts"}],"../../../node_modules/core/src/response/base.provider.ts":[function(require,module,exports) {
+},{"./module":"../src/configurations/module.ts"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/request-error.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.RequestError = void 0;
+
+class RequestError extends Error {
+  constructor(type, message) {
+    super(message);
+    this.type = type;
+  }
+
+}
+
+exports.RequestError = RequestError;
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/utils/url.utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.urlUtils = void 0;
+
+class URLUtils {
+  createBaseUrl(options) {
+    var _a;
+
+    const protocol = options.protocol ? `${options.protocol}:/` : "/";
+    const currentHost = window.location.host;
+    const hostName = options.hostName ? options.hostName : (_a = options.hostNames) === null || _a === void 0 ? void 0 : _a[currentHost];
+    if (!hostName) throw "hostName or proper hostNames must be defined";
+    const joined = [protocol, hostName, options.languagePrefix, options.prefix].filter(e => e).join("/");
+    return this.ensureLastCharacterToBeSlash(joined);
+  }
+
+  ensureLastCharacterToBeSlash(baseUrl) {
+    if (baseUrl[baseUrl.length - 1] != "/") return baseUrl + "/";
+    return baseUrl;
+  }
+
+}
+
+const urlUtils = new URLUtils();
+exports.urlUtils = urlUtils;
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/statics/request-error-type.enum.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.EnumRequestErrorType = void 0;
+var EnumRequestErrorType;
+exports.EnumRequestErrorType = EnumRequestErrorType;
+
+(function (EnumRequestErrorType) {
+  EnumRequestErrorType["aborted"] = "aborted";
+  EnumRequestErrorType["serverError"] = "serverError";
+})(EnumRequestErrorType || (exports.EnumRequestErrorType = EnumRequestErrorType = {}));
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/fetch-http-client.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FetchHTTPClient = void 0;
+
+var _url = require("../utils/url.utils");
+
+var _requestError = require("./request-error");
+
+var _requestErrorType = require("./statics/request-error-type.enum");
+
+class FetchHTTPClient {
+  constructor(options) {
+    this.pendingRequests = new Map();
+    this.baseUrl = this.createBaseUrl(options);
+    this.headers = options.headers;
+    this.createErrorFn = options.createErrorFn;
+    this.preventRequestDuplication = options.preventRequestDuplication;
+  }
+
+  createAbortController() {
+    return new AbortController();
+  }
+
+  getPendingRequests() {
+    return this.pendingRequests;
+  }
+
+  async get(url, options) {
+    try {
+      return await this.handleGet(url, options);
+    } catch (e) {
+      this.handleError(e, url);
+    }
+  }
+
+  async post(url, data, options) {
+    const key = this.createKey(url, data);
+
+    try {
+      return await this.handlePost({
+        url,
+        data,
+        options,
+        key
+      });
+    } catch (e) {
+      this.handleError(e, key);
+    }
+  }
+
+  async upload(url, formData) {
+    try {
+      return this.handleUpload(url, formData);
+    } catch (e) {
+      this.handleError(e, url);
+    }
+  }
+
+  setHeader(key, value) {
+    if (!this.headers) this.headers = {};
+    this.headers[key] = value;
+  }
+
+  removeHeader(key) {
+    var _a, _b;
+
+    (_a = this.headers) === null || _a === void 0 ? true : delete _a[key];
+    const isHeadersEmpty = !Object.keys((_b = this.headers) !== null && _b !== void 0 ? _b : {}).length;
+    if (isHeadersEmpty) this.headers = undefined;
+  }
+
+  async handleUpload(url, formData) {
+    const response = await fetch(`${this.baseUrl}${url}`, {
+      method: "POST",
+      headers: { ...this.headers,
+        "Content-Type": "multipart/form-data"
+      },
+      body: formData
+    });
+    return this.handleResponse(response);
+  }
+
+  createFetchInit(method, options, data) {
+    const abortController = options === null || options === void 0 ? void 0 : options.abortController;
+    const body = data ? JSON.stringify(data) : undefined;
+    return {
+      method,
+      headers: this.headers,
+      body: body,
+      signal: abortController === null || abortController === void 0 ? void 0 : abortController.signal
+    };
+  }
+
+  async handlePost(options) {
+    const pendingRequest = this.pendingRequests.get(options.key);
+    const init = this.createFetchInit("POST", options.options, options.data);
+    let response = await this.createResponse({
+      url: options.url,
+      init,
+      key: options.key,
+      pendingRequest
+    });
+    this.pendingRequests.delete(options.key);
+    return this.handleResponse(response);
+  }
+
+  createKey(url, data) {
+    return `${url}_${data ? JSON.stringify(data) : ""}`;
+  }
+
+  async handleGet(url, options) {
+    const pendingRequest = this.pendingRequests.get(url);
+    const init = this.createFetchInit("GET", options);
+    let response = await this.createResponse({
+      url,
+      init,
+      key: url,
+      pendingRequest
+    });
+    this.pendingRequests.delete(url);
+    return this.handleResponse(response);
+  }
+
+  async createResponse(options) {
+    if (options.pendingRequest) return await options.pendingRequest;
+    const request = fetch(`${this.baseUrl}${options.url}`, options.init);
+    if (this.preventRequestDuplication) this.pendingRequests.set(options.key, request);
+    return await request;
+  }
+
+  async handleResponse(response) {
+    if (response.ok) return response.json();
+    await this.handleResponseError(response);
+  }
+
+  async handleResponseError(response) {
+    if (this.createErrorFn) throw await this.createErrorFn(response);
+    const body = response.body ? ` ${response.body}` : "";
+    throw new Error(`${response.status}: ${response.statusText}.${body}`);
+  }
+
+  handleError(error, key) {
+    this.pendingRequests.delete(key);
+    if (error instanceof DOMException && error.name == "AbortError") throw new _requestError.RequestError(_requestErrorType.EnumRequestErrorType.aborted);
+    throw new _requestError.RequestError(_requestErrorType.EnumRequestErrorType.serverError, error.message);
+  }
+
+  createBaseUrl(options) {
+    if (options.baseUrl) return _url.urlUtils.ensureLastCharacterToBeSlash(options.baseUrl);
+    return _url.urlUtils.createBaseUrl(options);
+  }
+
+}
+
+exports.FetchHTTPClient = FetchHTTPClient;
+},{"../utils/url.utils":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/utils/url.utils.js","./request-error":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/request-error.js","./statics/request-error-type.enum":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/statics/request-error-type.enum.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/types/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _exportNames = {
+  RequestError: true,
+  FetchHTTPClient: true,
+  EnumRequestErrorType: true
+};
+Object.defineProperty(exports, "RequestError", {
+  enumerable: true,
+  get: function () {
+    return _requestError.RequestError;
+  }
+});
+Object.defineProperty(exports, "FetchHTTPClient", {
+  enumerable: true,
+  get: function () {
+    return _fetchHttpClient.FetchHTTPClient;
+  }
+});
+Object.defineProperty(exports, "EnumRequestErrorType", {
+  enumerable: true,
+  get: function () {
+    return _requestErrorType.EnumRequestErrorType;
+  }
+});
+
+var _requestError = require("./request-error");
+
+var _fetchHttpClient = require("./fetch-http-client");
+
+var _requestErrorType = require("./statics/request-error-type.enum");
+
+var _types = require("./types");
+
+Object.keys(_types).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _types[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _types[key];
+    }
+  });
+});
+},{"./request-error":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/request-error.js","./fetch-http-client":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/fetch-http-client.js","./statics/request-error-type.enum":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/statics/request-error-type.enum.js","./types":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/types/index.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/controller/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/utils/env.utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isProduction = exports.isDevelopment = void 0;
+
+const isDevelopment = () => "development" == "development";
+
+exports.isDevelopment = isDevelopment;
+
+const isProduction = () => !isDevelopment();
+
+exports.isProduction = isProduction;
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/logger/logger.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Logger = void 0;
+
+class Logger {
+  constructor(options) {
+    var _a, _b;
+
+    this.logStyle = "";
+    this.disabled = false;
+    this.logStyle = (_a = options === null || options === void 0 ? void 0 : options.logStyle) !== null && _a !== void 0 ? _a : "";
+    this.disabled = (_b = options === null || options === void 0 ? void 0 : options.disabled) !== null && _b !== void 0 ? _b : false;
+  }
+
+  disable() {
+    this.disabled = true;
+  }
+
+  enable() {
+    this.disabled = false;
+  }
+
+  log(...args) {
+    if (this.disabled) return;
+    const nonObjects = args.filter(e => this.isPrimativeValue(e));
+    const objects = args.filter(e => !this.isPrimativeValue(e));
+    const joined = nonObjects.map(e => String(e)).join(" ");
+    const primativeArgs = nonObjects.length ? [`%c${joined}`, this.logStyle] : [];
+    console.log(...primativeArgs, ...objects);
+  }
+
+  logMethod() {
+    return (target, propertyKey, descriptor) => {
+      const originalMethod = descriptor.value;
+      const self = this;
+
+      descriptor.value = function (...args) {
+        var _a;
+
+        let header = `${String(propertyKey)}()`;
+        if ((_a = target.constructor) === null || _a === void 0 ? void 0 : _a.name) header = `${target.constructor.name} => ${header}`;
+        self.log(header, ...args);
+        return originalMethod === null || originalMethod === void 0 ? void 0 : originalMethod.apply(this, args);
+      };
+
+      return descriptor;
+    };
+  }
+
+  isPrimativeValue(value) {
+    return typeof value !== "object" && typeof value !== "function";
+  }
+
+}
+
+exports.Logger = Logger;
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/logger/core.logger.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.coreLogger = void 0;
+
+var _env = require("../utils/env.utils");
+
+var _logger = require("./logger");
+
+const coreLogger = new _logger.Logger({
+  logStyle: "font-weight:500;border-left:3px solid black; color:#222; padding-left:3px;background-color: #ffffff;background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);",
+  disabled: (0, _env.isProduction)()
+});
+exports.coreLogger = coreLogger;
+},{"../utils/env.utils":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/utils/env.utils.js","./logger":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/logger/logger.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/core-module.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ModuleCore = void 0;
+
+var _core = require("../logger/core.logger");
+
+var __decorate = void 0 && (void 0).__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+      d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+class ModuleCore {
+  constructor() {
+    this.clients = new Map();
+    this.providers = new Map();
+    this.controllers = new Map();
+    this.caches = new Map();
+  }
+
+  useDecorators(...decorators) {
+    decorators.forEach(decorator => decorator.setModule(this));
+    return this;
+  }
+
+  registerHttpClientImplementation(client, key) {
+    const name = typeof key === "string" ? key : key.name;
+    this.clients.set(name, client);
+    return this;
+  }
+
+  registerHttpClient(client, options) {
+    _core.coreLogger.log("registerHttpClient", client, options);
+
+    const clientObj = new client(options);
+    this.clients.set(client.name, clientObj);
+    return this;
+  }
+
+  resolveHttpClient(client) {
+    if (client) return this.resolveByConstructor(this.clients, client);else return this.clients.values().next().value;
+  }
+
+  registerProvider(provider, options) {
+    var _a;
+
+    const client = this.resolveHttpClient(options === null || options === void 0 ? void 0 : options.client);
+    if (!client) throw new Error("Http-Client is not registered.");
+    const name = (_a = options === null || options === void 0 ? void 0 : options.key) !== null && _a !== void 0 ? _a : provider.name;
+    const providerObj = new provider(client);
+    this.providers.set(name, providerObj);
+    return this;
+  }
+
+  resolveProvider(key) {
+    if (typeof key === "string") return this.providers.get(key);else return this.resolveByConstructor(this.providers, key);
+  }
+
+  registerController(controller, options) {
+    var _a;
+
+    const provider = this.resolveProvider(options.provider);
+    if (!provider) return this;
+    const name = (_a = options.key) !== null && _a !== void 0 ? _a : controller.name;
+    const controllerObj = new controller(provider);
+    this.controllers.set(name, controllerObj);
+    return this;
+  }
+
+  resolveController(key) {
+    if (typeof key === "string") return this.controllers.get(key);
+    return this.resolveByConstructor(this.controllers, key);
+  }
+
+  registerCache(cache, key) {
+    const name = key !== null && key !== void 0 ? key : cache.name;
+    const cacheObj = new cache();
+    this.caches.set(name, cacheObj);
+    return this;
+  }
+
+  resolveCache(key) {
+    if (typeof key === "string") return this.caches.get(key);
+    return this.resolveByConstructor(this.caches, key);
+  }
+
+  clear() {
+    this.clients.clear();
+    this.providers.clear();
+    this.controllers.clear();
+    this.caches.clear();
+  }
+
+  resolveByConstructor(map, typeConstructor) {
+    return map.get(typeConstructor.name);
+  }
+
+}
+
+exports.ModuleCore = ModuleCore;
+
+__decorate([_core.coreLogger.logMethod()], ModuleCore.prototype, "useDecorators", null);
+
+__decorate([_core.coreLogger.logMethod()], ModuleCore.prototype, "registerHttpClientImplementation", null);
+
+__decorate([_core.coreLogger.logMethod()], ModuleCore.prototype, "registerHttpClient", null);
+
+__decorate([_core.coreLogger.logMethod()], ModuleCore.prototype, "registerProvider", null);
+
+__decorate([_core.coreLogger.logMethod()], ModuleCore.prototype, "registerController", null);
+
+__decorate([_core.coreLogger.logMethod()], ModuleCore.prototype, "registerCache", null);
+
+__decorate([_core.coreLogger.logMethod()], ModuleCore.prototype, "clear", null);
+},{"../logger/core.logger":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/logger/core.logger.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/create-module/create-module.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createModule = void 0;
+
+var _coreModule = require("../core-module");
+
+const createModule = () => {
+  return new _coreModule.ModuleCore();
+};
+
+exports.createModule = createModule;
+},{"../core-module":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/core-module.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/decorators/injectable.decorators.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.InjectableDecorators = void 0;
+
+class InjectableDecorators {
+  constructor() {
+    this.module = null;
+  }
+
+  setModule(module) {
+    this.module = module;
+  }
+
+  client(options) {
+    return clientConstructor => {
+      var _a;
+
+      (_a = this.module) === null || _a === void 0 ? void 0 : _a.registerHttpClient(clientConstructor, options);
+    };
+  }
+
+  provider(options) {
+    return providerConstructor => {
+      var _a;
+
+      (_a = this.module) === null || _a === void 0 ? void 0 : _a.registerProvider(providerConstructor, options);
+    };
+  }
+
+  controller(options) {
+    return controllerConstructor => {
+      var _a;
+
+      (_a = this.module) === null || _a === void 0 ? void 0 : _a.registerController(controllerConstructor, options);
+    };
+  }
+
+  cache(key) {
+    return cacheConstructor => {
+      var _a;
+
+      (_a = this.module) === null || _a === void 0 ? void 0 : _a.registerCache(cacheConstructor, key);
+    };
+  }
+
+}
+
+exports.InjectableDecorators = InjectableDecorators;
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/decorators/resolve.decorators.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ResolveDecorators = void 0;
+
+class ResolveDecorators {
+  constructor() {
+    this.module = null;
+  }
+
+  setModule(module) {
+    this.module = module;
+  }
+
+  client(client) {
+    return (target, key) => {
+      var _a;
+
+      const clientObj = (_a = this.module) === null || _a === void 0 ? void 0 : _a.resolveHttpClient(client);
+      if (!clientObj) return;
+      this.defineProperty(target, key, clientObj);
+    };
+  }
+
+  provider(provider) {
+    return (target, key) => {
+      var _a;
+
+      const providerObj = (_a = this.module) === null || _a === void 0 ? void 0 : _a.resolveProvider(provider);
+      if (!providerObj) return;
+      this.defineProperty(target, key, providerObj);
+    };
+  }
+
+  controller(controller) {
+    return (target, key) => {
+      var _a;
+
+      const controllerObj = (_a = this.module) === null || _a === void 0 ? void 0 : _a.resolveController(controller);
+      if (!controllerObj) return;
+      this.defineProperty(target, key, controllerObj);
+    };
+  }
+
+  cache(cache) {
+    return (target, key) => {
+      var _a;
+
+      const cacheObj = (_a = this.module) === null || _a === void 0 ? void 0 : _a.resolveCache(cache);
+      if (!cacheObj) return;
+      this.defineProperty(target, key, cacheObj);
+    };
+  }
+
+  defineProperty(target, key, newValue) {
+    Object.defineProperty(target, key, {
+      get: () => newValue,
+      enumerable: false,
+      configurable: true
+    });
+  }
+
+}
+
+exports.ResolveDecorators = ResolveDecorators;
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/decorators/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "InjectableDecorators", {
+  enumerable: true,
+  get: function () {
+    return _injectable.InjectableDecorators;
+  }
+});
+Object.defineProperty(exports, "ResolveDecorators", {
+  enumerable: true,
+  get: function () {
+    return _resolve.ResolveDecorators;
+  }
+});
+
+var _injectable = require("./injectable.decorators");
+
+var _resolve = require("./resolve.decorators");
+},{"./injectable.decorators":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/decorators/injectable.decorators.js","./resolve.decorators":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/decorators/resolve.decorators.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _exportNames = {
+  ModuleCore: true,
+  createModule: true
+};
+Object.defineProperty(exports, "ModuleCore", {
+  enumerable: true,
+  get: function () {
+    return _coreModule.ModuleCore;
+  }
+});
+Object.defineProperty(exports, "createModule", {
+  enumerable: true,
+  get: function () {
+    return _createModule.createModule;
+  }
+});
+
+var _coreModule = require("./core-module");
+
+var _createModule = require("./create-module/create-module");
+
+var _index = require("./decorators/index");
+
+Object.keys(_index).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _index[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _index[key];
+    }
+  });
+});
+},{"./core-module":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/core-module.js","./create-module/create-module":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/create-module/create-module.js","./decorators/index":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/decorators/index.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/provider/core-provider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CoreProvider = void 0;
+
+class CoreProvider {
+  constructor(client) {
+    this.abortControllers = new Map();
+    this.baseUrl = null;
+    this.client = client;
+  }
+
+  async post(config, data, options) {
+    let requestOptions = this.createRequestOptions(options);
+    const computedUrl = this.createUrl(config.url);
+    return this.tryClientRequest(() => this.client.post(computedUrl, data, requestOptions), options);
+  }
+
+  async cachablePost(config, data, options) {
+    if (!this.cache) throw new Error("'cache' property must be defined.");
+    const cached = this.getFromCache(config.cacheKey);
+    if (cached != undefined) return cached;
+    const response = await this.post(config, data, options);
+    this.saveToCache(config.cacheKey, response);
+    return response;
+  }
+
+  async get(url, options) {
+    let requestOptions = this.createRequestOptions(options);
+    const computedUrl = this.createUrl(url);
+    return this.tryClientRequest(() => this.client.get(computedUrl, requestOptions), options);
+  }
+
+  async upload(url, formData) {
+    const computedUrl = this.createUrl(url);
+    return this.client.upload(computedUrl, formData);
+  }
+
+  getFromCache(key) {
+    var _a;
+
+    return (_a = this.cache) === null || _a === void 0 ? void 0 : _a.get(key);
+  }
+
+  saveToCache(key, value) {
+    var _a;
+
+    if (value != undefined) (_a = this.cache) === null || _a === void 0 ? void 0 : _a.set(key, value);
+  }
+
+  createUrl(url) {
+    return this.baseUrl ? `${this.baseUrl}/${url}` : url;
+  }
+
+  async tryClientRequest(request, options) {
+    try {
+      const response = await request();
+      this.clearAbortControllers(options);
+      return response;
+    } catch (e) {
+      this.clearAbortControllers(options);
+      throw e;
+    }
+  }
+
+  createRequestOptions(options) {
+    let requestOptions = {};
+    requestOptions.abortController = this.handleAbortAndCreateAbortController(options);
+    return requestOptions;
+  }
+
+  handleAbortAndCreateAbortController(options) {
+    if (!(options === null || options === void 0 ? void 0 : options.raceId) || !this.client.createAbortController) return;
+    let abortController = this.getAndAbortRacerRequests(options.raceId);
+    abortController = this.client.createAbortController();
+    this.abortControllers.set(options.raceId, abortController);
+    return abortController;
+  }
+
+  getAndAbortRacerRequests(raceId) {
+    let abortController = this.abortControllers.get(raceId);
+    if (abortController) abortController.abort();
+    return abortController;
+  }
+
+  clearAbortControllers(options) {
+    if (!(options === null || options === void 0 ? void 0 : options.raceId)) return;
+    this.abortControllers.delete(options === null || options === void 0 ? void 0 : options.raceId);
+  }
+
+}
+
+exports.CoreProvider = CoreProvider;
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/provider/types/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/provider/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _exportNames = {
+  CoreProvider: true
+};
+Object.defineProperty(exports, "CoreProvider", {
+  enumerable: true,
+  get: function () {
+    return _coreProvider.CoreProvider;
+  }
+});
+
+var _coreProvider = require("./core-provider");
+
+var _types = require("./types");
+
+Object.keys(_types).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _types[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _types[key];
+    }
+  });
+});
+},{"./core-provider":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/provider/core-provider.js","./types":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/provider/types/index.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/cache/memory-cache.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MemoryCache = void 0;
+
+class MemoryCache {
+  constructor() {
+    this.store = new Map();
+  }
+
+  set(key, value) {
+    this.store.set(key, value);
+  }
+
+  get(key) {
+    var _a;
+
+    return (_a = this.store.get(key)) !== null && _a !== void 0 ? _a : null;
+  }
+
+  remove(key) {
+    this.store.delete(key);
+  }
+
+  clear() {
+    this.store.clear();
+  }
+
+}
+
+exports.MemoryCache = MemoryCache;
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/cache/session-storage-cache.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SessionStorageCache = void 0;
+
+var _utils = require("@sabasayer/utils");
+
+class SessionStorageCache {
+  set(key, value) {
+    const stringValue = JSON.stringify(value);
+
+    _utils.SessionStorageUtil.setItem(key, stringValue);
+  }
+
+  get(key) {
+    const value = _utils.SessionStorageUtil.getItem(key);
+
+    if (!value) return null;
+    return JSON.parse(value);
+  }
+
+  remove(key) {
+    _utils.SessionStorageUtil.removeItem(key);
+  }
+
+  clear() {
+    _utils.SessionStorageUtil.clear();
+  }
+
+}
+
+exports.SessionStorageCache = SessionStorageCache;
+},{"@sabasayer/utils":"../../../node_modules/@sabasayer/utils/dist/index.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/cache/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "MemoryCache", {
+  enumerable: true,
+  get: function () {
+    return _memoryCache.MemoryCache;
+  }
+});
+Object.defineProperty(exports, "SessionStorageCache", {
+  enumerable: true,
+  get: function () {
+    return _sessionStorageCache.SessionStorageCache;
+  }
+});
+
+var _memoryCache = require("./memory-cache");
+
+var _sessionStorageCache = require("./session-storage-cache");
+},{"./memory-cache":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/cache/memory-cache.js","./session-storage-cache":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/cache/session-storage-cache.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/mapper/core-mapper.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CoreMapper = void 0;
+
+class CoreMapper {
+  constructor() {
+    this.targetConfiguration = {
+      fieldConfigurations: {}
+    };
+    this.sourceConfiguration = {
+      fieldConfigurations: {}
+    };
+  }
+
+  setTargetConfig(config) {
+    this.targetConfiguration = { ...this.targetConfiguration,
+      ...config
+    };
+  }
+
+  setSourceConfig(config) {
+    this.sourceConfiguration = { ...this.sourceConfiguration,
+      ...config
+    };
+  }
+
+  ignoreSourceFields(...sourceFields) {
+    this.targetConfiguration.ignoredSourceFields = sourceFields;
+  }
+
+  ignoreTargetFields(...targetFields) {
+    this.sourceConfiguration.ignoredSourceFields = targetFields;
+  }
+
+  forTarget(targetField, sourceValue) {
+    this.targetConfiguration.fieldConfigurations[targetField] = sourceValue !== null && sourceValue !== void 0 ? sourceValue : targetField;
+    return this;
+  }
+
+  forSource(sourceField, targetValue) {
+    this.sourceConfiguration.fieldConfigurations[sourceField] = targetValue !== null && targetValue !== void 0 ? targetValue : sourceField;
+    return this;
+  }
+
+  mapToTarget(source) {
+    return this.map(source, this.targetConfiguration);
+  }
+
+  mapToSource(target) {
+    return this.map(target, this.sourceConfiguration);
+  }
+
+  mapToTargetList(sources) {
+    return sources === null || sources === void 0 ? void 0 : sources.map(e => this.mapToTarget(e));
+  }
+
+  mapToSourceList(targets) {
+    return targets === null || targets === void 0 ? void 0 : targets.map(e => this.mapToSource(e));
+  }
+
+  map(source, configuration) {
+    let target = {};
+    const hasFieldConfig = Object.values(configuration.fieldConfigurations).length;
+    this.mapByFieldConfig(source, target, configuration);
+
+    if (!hasFieldConfig || configuration.canMapUndefinedFields) {
+      this.mapAllFields(source, target, configuration);
+    }
+
+    return target;
+  }
+
+  mapByFieldConfig(source, target, configuration) {
+    for (let targetKey in configuration.fieldConfigurations) {
+      const config = configuration.fieldConfigurations[targetKey];
+      target[targetKey] = typeof config === "function" ? config(source) : source[config];
+    }
+  }
+
+  mapAllFields(source, target, configuration) {
+    var _a, _b;
+
+    for (let key in source) {
+      const isIgnoredField = (_b = (_a = configuration.ignoredSourceFields) === null || _a === void 0 ? void 0 : _a.includes) === null || _b === void 0 ? void 0 : _b.call(_a, key);
+      const hasFieldConfig = configuration.fieldConfigurations.hasOwnProperty(key);
+      if (hasFieldConfig || isIgnoredField) continue;
+      target[key] = source[key];
+    }
+  }
+
+}
+
+exports.CoreMapper = CoreMapper;
+},{}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/mapper/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "CoreMapper", {
+  enumerable: true,
+  get: function () {
+    return _coreMapper.CoreMapper;
+  }
+});
+
+var _coreMapper = require("./core-mapper");
+},{"./core-mapper":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/mapper/core-mapper.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/utils/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "urlUtils", {
+  enumerable: true,
+  get: function () {
+    return _url.urlUtils;
+  }
+});
+
+var _url = require("./url.utils");
+},{"./url.utils":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/utils/url.utils.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/logger/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Logger", {
+  enumerable: true,
+  get: function () {
+    return _logger.Logger;
+  }
+});
+
+var _logger = require("./logger");
+},{"./logger":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/logger/logger.js"}],"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _index = require("./http-client/index");
+
+Object.keys(_index).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _index[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _index[key];
+    }
+  });
+});
+
+var _index2 = require("./controller/index");
+
+Object.keys(_index2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _index2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _index2[key];
+    }
+  });
+});
+
+var _index3 = require("./module/index");
+
+Object.keys(_index3).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _index3[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _index3[key];
+    }
+  });
+});
+
+var _index4 = require("./provider/index");
+
+Object.keys(_index4).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _index4[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _index4[key];
+    }
+  });
+});
+
+var _index5 = require("./cache/index");
+
+Object.keys(_index5).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _index5[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _index5[key];
+    }
+  });
+});
+
+var _index6 = require("./mapper/index");
+
+Object.keys(_index6).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _index6[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _index6[key];
+    }
+  });
+});
+
+var _index7 = require("./utils/index");
+
+Object.keys(_index7).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _index7[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _index7[key];
+    }
+  });
+});
+
+var _index8 = require("./logger/index");
+
+Object.keys(_index8).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _index8[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _index8[key];
+    }
+  });
+});
+},{"./http-client/index":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/http-client/index.js","./controller/index":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/controller/index.js","./module/index":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/module/index.js","./provider/index":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/provider/index.js","./cache/index":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/cache/index.js","./mapper/index":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/mapper/index.js","./utils/index":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/utils/index.js","./logger/index":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/logger/index.js"}],"../../../node_modules/core/src/response/base.provider.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5873,7 +7045,7 @@ class BaseProvider extends _module.CoreProvider {
 }
 
 exports.BaseProvider = BaseProvider;
-},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js"}],"../../../node_modules/auth/src/auth/auth.config.ts":[function(require,module,exports) {
+},{"@sabasayer/module.core":"../../../node_modules/core/node_modules/@sabasayer/module.core/dist/index.js"}],"../../../node_modules/auth/src/auth/auth.config.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6019,25 +7191,7 @@ __decorate([_decorators.resolve.client()], AuthController.prototype, "httpClient
 exports.AuthController = AuthController = __decorate([_decorators.injectable.controller({
   provider: _auth.AuthProvider
 })], AuthController);
-},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js","../configurations/decorators":"../../../node_modules/auth/src/configurations/decorators.ts","./auth.provider":"../../../node_modules/auth/src/auth/auth.provider.ts"}],"../../../node_modules/auth/src/configurations/module.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.authModule = void 0;
-
-var _module = require("@sabasayer/module.core");
-
-var _decorators = require("./decorators");
-
-class AuthModule extends _module.ModuleCore {}
-
-const authModule = new AuthModule();
-exports.authModule = authModule;
-authModule.registerCache(_module.SessionStorageCache);
-authModule.useDecorators(_decorators.injectable, _decorators.resolve);
-},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js","./decorators":"../../../node_modules/auth/src/configurations/decorators.ts"}],"../../../node_modules/auth/src/tenant/tenants.config.ts":[function(require,module,exports) {
+},{"@sabasayer/module.core":"../../../node_modules/@sabasayer/module.core/dist/index.js","../configurations/decorators":"../../../node_modules/auth/src/configurations/decorators.ts","./auth.provider":"../../../node_modules/auth/src/auth/auth.provider.ts"}],"../../../node_modules/auth/src/tenant/tenants.config.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6180,7 +7334,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59488" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51634" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

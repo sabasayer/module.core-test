@@ -11,7 +11,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
-    "@sabasayer/module.core": "^1.1.16",
+    "@sabasayer/module.core": "^1.1.17",
     "auth": "^1.0.0"
   },
   "browserslist": [

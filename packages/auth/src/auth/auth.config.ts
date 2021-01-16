@@ -1,4 +1,4 @@
-import { IRequestConfig } from "@sabasayer/module.core/dist/provider/types/request-config.interface";
+import { IRequestConfig } from "@sabasayer/module.core";
 import { SignInResponseModel } from "./types/sign-in-response-model.interface";
 import { SignInRequest } from "./types/sign-in.request";
 import { SignOutRequest } from "./types/sign-out.request";

@@ -1,18 +1,17 @@
 import { FetchHTTPClient, ModuleCore } from "@sabasayer/module.core";
-import { authModule } from "../../../auth/src/configurations/module";
-import { coreLogger } from "./logger";
+import { authModule } from "auth/src/configurations/module";
 import { fetchClient } from "./http-client.boot";
-import { injectable, resolve } from "auth/src/configurations/decorators";
+import { injectable, resolve } from "./decorators";
 
-class CoreModule extends ModuleCore {}
+class CoreModule extends ModuleCore {
+  private id = Math.random();
+}
 
 const coreModule = new CoreModule();
 
-coreModule.registerHttpClientImplementation(fetchClient, FetchHTTPClient);
-authModule.registerHttpClientImplementation(fetchClient, FetchHTTPClient);
-
 coreModule.useDecorators(resolve, injectable);
 
-coreLogger.log("auth module", authModule);
+coreModule.registerHttpClientImplementation(fetchClient, FetchHTTPClient);
+authModule.registerHttpClientImplementation(fetchClient, FetchHTTPClient);
 
 export { coreModule };

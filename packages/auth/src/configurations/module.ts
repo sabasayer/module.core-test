@@ -1,7 +1,9 @@
 import { ModuleCore, SessionStorageCache } from "@sabasayer/module.core";
 import { injectable, resolve } from "./decorators";
 
-class AuthModule extends ModuleCore {}
+class AuthModule extends ModuleCore {
+  private id = Math.random();
+}
 
 const authModule = new AuthModule();
 

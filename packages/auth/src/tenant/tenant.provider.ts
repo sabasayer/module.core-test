@@ -1,5 +1,5 @@
 import { ICache, SessionStorageCache } from "@sabasayer/module.core";
-import { BaseProvider } from "../../../core/src/response/base.provider";
+import { BaseProvider } from "core/src/response/base.provider";
 import { injectable, resolve } from "../configurations/decorators";
 import { getTenantsRequestConfig } from "./tenants.config";
 

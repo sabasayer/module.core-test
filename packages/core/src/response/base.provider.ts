@@ -6,12 +6,12 @@ import {
 import { ResponseModel } from "./response-model.interface";
 
 export class BaseProvider extends CoreProvider {
-  async post<Request, Response>(
-    config: IRequestConfig<Request, Response>,
-    request: Request,
+  async post<TRequest, TResponse>(
+    config: IRequestConfig<TRequest, TResponse>,
+    request: TRequest,
     options?: ProviderRequestOptions
-  ): Promise<Response | undefined> {
-    const response = await super.post<Request, ResponseModel<Response>>(
+  ): Promise<TResponse | undefined> {
+    const response = await super.post<TRequest, ResponseModel<TResponse>>(
       config,
       request,
       options

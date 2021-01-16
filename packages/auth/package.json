@@ -9,7 +9,7 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@sabasayer/module.core": "^1.1.15",
+    "@sabasayer/module.core": "^1.1.17",
     "@sabasayer/utils": "^1.2.4",
     "core": "^1.0.0"
   },

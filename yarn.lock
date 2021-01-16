@@ -1780,17 +1780,10 @@
     "@parcel/utils" "^1.11.0"
     physical-cpu-count "^2.0.0"
 
-"@sabasayer/module.core@^1.1.15":
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/@sabasayer/module.core/-/module.core-1.1.15.tgz#941af49013b6eefb78af548b45b1c7830e863ff3"
-  integrity sha512-0BGfFsJuUxYv1GMlk6AwU5FbOehjM2OTnJDO3SZoZm+8jTtYOtr/OCu88Lrdx4GuzB9wlZoXG2nr7/qMs8JYvg==
-  dependencies:
-    "@sabasayer/utils" "^1.2.4"
-
-"@sabasayer/module.core@^1.1.16":
-  version "1.1.16"
-  resolved "https://registry.yarnpkg.com/@sabasayer/module.core/-/module.core-1.1.16.tgz#492b6295a6b3c3d6f5d045f47fbe1aaaf4abb31d"
-  integrity sha512-wV/gYp9S1L0AVFvIOZU+b9GMXjUMAAlfNtCB6iRWkK3uwqp7ctGuBADkyAja1Eh/tuo5LehOPT7HSt+7272gRA==
+"@sabasayer/module.core@^1.1.17":
+  version "1.1.17"
+  resolved "https://registry.yarnpkg.com/@sabasayer/module.core/-/module.core-1.1.17.tgz#9588d364c06378434770b464d16a923023ec7f72"
+  integrity sha512-o6s4AfmFu3jy77xkEU9yCgpsFtE9FyTootijvti1f32LWdXOOq7+RBKzcxzk725Nnu6Bk5WlO4VC7MtcUGE2Eg==
   dependencies:
     "@sabasayer/utils" "^1.2.4"
 

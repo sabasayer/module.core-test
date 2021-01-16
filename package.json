@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "salihbaki",
   "license": "MIT",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "install-dep":"lerna exec yarn && lerna link"
+  },
   "devDependencies": {
     "lerna": "^3.22.1"
   },
