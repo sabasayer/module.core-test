@@ -1,4 +1,4 @@
-import { FetchHTTPClient, ICoreModule } from "@sabasayer/module.core";
+import { FetchHTTPClient } from "@sabasayer/module.core";
 
 type ApiErrorMessage = { key: string; value: string };
 
@@ -7,8 +7,8 @@ const createErrorFn = async (response) => {
   const messages: ApiErrorMessage[] | undefined = res.data.messages;
 
   const errorMessage = messages
-    ?.map((e) => `${e.key} : ${e.value}`)
-    .join(" , ");
+    ?.map((e) => `${e.key} : ${e.value}`) 
+    .join(", ");
 
   return new Error(errorMessage);
 };

@@ -11,12 +11,12 @@ export class BaseProvider extends CoreProvider {
     request: TRequest,
     options?: ProviderRequestOptions
   ): Promise<TResponse | undefined> {
-    const response = await super.post<TRequest, ResponseModel<TResponse>>(
+    const response = await super.post<TRequest, TResponse>(
       config,
       request,
       options
     );
 
-    return response.data;
+    return (response as any as ResponseModel<TResponse>).data;
   }
 }

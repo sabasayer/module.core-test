@@ -1,9 +1,11 @@
 import {
+  globalModule,
   IController,
   IHTTPClient,
   SessionStorageCache,
 } from "@sabasayer/module.core";
 import { injectable, resolve } from "../configurations/decorators";
+import { authModule } from "../configurations/module";
 import { AuthProvider } from "./auth.provider";
 import { SignInResponseModel } from "./types/sign-in-response-model.interface";
 import { SignInRequest } from "./types/sign-in.request";
@@ -11,20 +13,23 @@ import { SignInRequest } from "./types/sign-in.request";
 @injectable.controller({ provider: AuthProvider })
 export class AuthController implements IController {
   @resolve.cache(SessionStorageCache)
-  cache: SessionStorageCache;
+  cache?: SessionStorageCache;
 
   @resolve.client()
-  httpClient: IHTTPClient;
+  httpClient?: IHTTPClient;
 
   readonly cacheKey = "signInResponse";
   readonly authHeaderKey = "x-authentication-token";
 
+  private id = Math.random();
+
   constructor(private provider: AuthProvider) {
+    console.log("init", this.cache);
     this.initTokenFromCache();
   }
 
   private get response() {
-    return this.cache.get<SignInResponseModel>(this.cacheKey);
+    return this.cache?.get<SignInResponseModel>(this.cacheKey);
   }
 
   get currentUser() {
@@ -65,7 +70,8 @@ export class AuthController implements IController {
   }
 
   private setAuthToken(token: string) {
-    this.httpClient.setHeader("x-authentication-token", token);
+    this.httpClient.setHeader(this.authHeaderKey, token);
+    globalModule.addToSharedHeaders({ [this.authHeaderKey]: token });
   }
 
   private removeCache() {
@@ -74,5 +80,6 @@ export class AuthController implements IController {
 
   private removeAuthToken() {
     this.httpClient.setHeader(this.authHeaderKey, "");
+    globalModule.removeSharedHeaders(this.authHeaderKey);
   }
 }

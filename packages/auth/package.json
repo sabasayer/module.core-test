@@ -4,12 +4,21 @@
   "main": "index.js",
   "author": "salihbaki",
   "license": "MIT",
+  "scripts": {
+    "serve": "webpack serve",
+    "build": "webpack"
+  },
   "devDependencies": {
     "mock-local-storage": "^1.1.16",
-    "typescript": "^4.1.3"
+    "html-webpack-plugin": "^5.3.1",
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@sabasayer/module.core": "^1.1.17",
+    "@sabasayer/module.core": "^1.1.25",
     "@sabasayer/utils": "^1.2.4",
     "core": "^1.0.0"
   },

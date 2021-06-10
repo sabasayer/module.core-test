@@ -6,7 +6,7 @@ import { getTenantsRequestConfig } from "./tenants.config";
 @injectable.provider()
 export class TenantProvider extends BaseProvider {
   @resolve.cache(SessionStorageCache)
-  cache: ICache;
+  declare cache: ICache;
 
   protected baseUrl = "core";
 
