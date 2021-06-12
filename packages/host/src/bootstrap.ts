@@ -1,11 +1,16 @@
-export const bootstrap = async () => {
-  console.log("bootstrap");
+const authModulePromise = import("auth/module");
+const authPromise = import("auth/auth");
 
-  const authModule = (await import("auth/module")).authModule;
-  console.log('module',authModule);
+export const getModule = async () => (await authModulePromise).authModule;
+
+export const bootstrap = async () => {
+  const authModule = await getModule();
   authModule.bootstrap();
 };
 
 export const getAuthController = async () => {
-  return (await import("auth/auth")).AuthController;
+  const module = await getModule();
+  const controller = (await authPromise).AuthController;
+
+  return module.resolveController(controller);
 };

@@ -3,5 +3,7 @@ import {
   ResolveDecorators,
 } from "@sabasayer/module.core";
 
-export const resolve = new ResolveDecorators();
-export const injectable = new InjectableDecorators();
+const resolve = new ResolveDecorators();
+const injectable = new InjectableDecorators();
+
+export { resolve, injectable };

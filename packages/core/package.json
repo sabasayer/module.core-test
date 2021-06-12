@@ -16,7 +16,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@sabasayer/module.core": "^1.1.25",
+    "@sabasayer/module.core": "^1.1.26",
     "auth": "^1.0.0"
   },
   "browserslist": [

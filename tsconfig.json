@@ -4,6 +4,10 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "lib": ["ESNext", "DOM"]
+    "lib": ["ESNext", "DOM"],
+    "paths": {
+      "auth/module": ["./packages/auth/src/configurations/module"],
+      "auth/auth": ["./packages/auth/src/auth"]
+    }
   }
 }

@@ -4,32 +4,29 @@ import {
   IHTTPClient,
   SessionStorageCache,
 } from "@sabasayer/module.core";
-import { injectable, resolve } from "../configurations/decorators";
-import { authModule } from "../configurations/module";
 import { AuthProvider } from "./auth.provider";
 import { SignInResponseModel } from "./types/sign-in-response-model.interface";
 import { SignInRequest } from "./types/sign-in.request";
+import { authModule } from "../configurations/module";
+import { injectable } from "../configurations/decorators";
 
 @injectable.controller({ provider: AuthProvider })
 export class AuthController implements IController {
-  @resolve.cache(SessionStorageCache)
-  cache?: SessionStorageCache;
-
-  @resolve.client()
-  httpClient?: IHTTPClient;
+  cache?: SessionStorageCache = authModule.resolveCache(SessionStorageCache);
+  httpClient?: IHTTPClient = authModule.resolveHttpClient();
 
   readonly cacheKey = "signInResponse";
   readonly authHeaderKey = "x-authentication-token";
 
   private id = Math.random();
 
-  constructor(private provider: AuthProvider) {
-    console.log("init", this.cache);
+  constructor(private provider?: AuthProvider) {
+    console.log("constructor => this.cache", this);
     this.initTokenFromCache();
   }
 
   private get response() {
-    return this.cache?.get<SignInResponseModel>(this.cacheKey);
+    return this.cache.get<SignInResponseModel>(this.cacheKey);
   }
 
   get currentUser() {

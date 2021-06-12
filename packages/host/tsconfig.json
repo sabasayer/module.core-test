@@ -1,11 +1,3 @@
 {
-  "compilerOptions": {
-    "noImplicitAny": true,
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "lib": ["ESNext", "DOM"]
-  },
-  "include": ["src/**/*"]
+  "extends": "../../tsconfig.json"
 }

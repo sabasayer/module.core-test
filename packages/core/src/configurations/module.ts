@@ -1,7 +1,7 @@
 import { CoreModule } from "@sabasayer/module.core";
-import { authModule } from "auth/src/configurations/module";
 import { fetchClient } from "./http-client.boot";
 import { injectable, resolve } from "./decorators";
+import { authModule } from "auth/src/configurations/module";
 
 class HomeModule extends CoreModule {
   private id = Math.random();
@@ -10,8 +10,7 @@ class HomeModule extends CoreModule {
 const coreModule = new HomeModule();
 
 coreModule.useDecorators(resolve, injectable);
-
 coreModule.registerHttpClientImplementation(fetchClient);
-authModule.registerHttpClientImplementation(fetchClient);
+authModule.bootstrap();
 
 export { coreModule };

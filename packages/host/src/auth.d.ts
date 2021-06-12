@@ -1,11 +1,11 @@
-declare module "auth/module" {
-  const authModule: any;
+// declare module "auth/module" {
+//   const authModule: any;
 
-  export { authModule };
-}
+//   export { authModule };
+// }
 
-declare module "auth/auth" {
-  const AuthController: any, AuthProvider: any;
+// declare module "auth/auth" {
+//   const AuthController: any, AuthProvider: any;
 
-  export { AuthController, AuthProvider };
-}
+//   export { AuthController, AuthProvider };
+// }

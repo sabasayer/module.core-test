@@ -37,10 +37,13 @@ module.exports = {
       name: "auth",
       filename: "remoteEntry.js",
       exposes: {
-        './module': path.resolve(__dirname, "src/configurations/module"),
-        './auth': path.resolve(__dirname, "src/auth"),
+        "./module": path.resolve(__dirname, "src/configurations/module"),
+        "./auth": path.resolve(__dirname, "src/auth"),
       },
-      shared: ["@sabasayer/module.core", "@sabasayer/utils"],
+      shared: {
+        "@sabasayer/module.core": { eager: true, singleton: true },
+        "@sabasayer/utils": { eager: true, singleton: true },
+      },
     }),
   ],
 };
